@@ -66,7 +66,8 @@ cd Pixels_Seminar
 ```
 * Run the installation script
 ```sh
-make install
+chmod +x ./install.sh
+./install.sh
 ```
 
 Installation is done successfully.

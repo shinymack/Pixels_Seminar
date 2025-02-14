@@ -1,0 +1,66 @@
+name: Test Install Script
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+      - test-install-script
+    paths:
+      - '.github/workflows/test-install-script.yml'
+      - 'install.sh'
+  pull_request:
+    branches:
+      - master
+      - main
+    paths:
+      - '.github/workflows/test-install-script.yml'
+      - 'install.sh'
+
+jobs:
+  ubuntu-22-04:
+    name: Ubuntu 22.04
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:22.04
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Run Installation Script
+        run: |
+          bash install.sh
+
+  ubuntu-latest:
+    name: Ubuntu Latest
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Run Installation Script
+        run: |
+          bash install.sh
+
+
+  macos:
+    name: MacOS Latest
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Run Installation Script
+        run: |
+          bash install.sh
