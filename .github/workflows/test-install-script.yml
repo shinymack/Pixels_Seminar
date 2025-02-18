@@ -14,7 +14,6 @@ on:
       - 'install.sh'
   pull_request:
     branches:
-      - master
       - main
     paths:
       - '.github/workflows/test-install-script.yml'
