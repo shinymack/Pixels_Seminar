@@ -65,10 +65,28 @@ git clone https://github.com/SRA-VJTI/Pixels_Seminar.git
 cd Pixels_Seminar
 ```
 * Run the installation script
+
+First, check if `make` is installed on your system. You can do this by running the following command in your terminal:
+
+```sh
+make --version
+```
+
+if ```make``` is installed: The command will output the version of ```make```, something like:
+```sh
+GNU Make 4.3
+Built for x86_64-pc-linux-gnu
+```
+
+if ```make``` is not installed: You will see an error like:
+```sh
+command not found: make
+```
+
+In this case, you can use ```install.sh``` script set-up the dependencies, To do so run the following commands:
 ```sh
 chmod +x ./install.sh
 ./install.sh
 ```
-
-Installation is done successfully.
+This will install the necessary dependencies for the project.
 
