@@ -49,6 +49,7 @@ jobs:
 
       - name: Run Installation Script
         run: ./install.sh
+
   wsl:
     name: WSL
     runs-on: windows-latest
@@ -63,13 +64,12 @@ jobs:
 
       - name: Make install.sh Executable and Convert Line Endings
         run: |
-          wsl sed -i 's/\r//' install.sh  # Convert line endings to Unix-style
-          chmod +x install.sh
-        shell: wsl-run {0}
-        
+          wsl sed -i 's/\r//' install.sh  
+          wsl chmod +x install.sh          
+
       - name: Run Installation Script in WSL
-        run: ./install.sh
-        shell: wsl-run {0}  # Ensure commands run inside WSL
+        run: wsl ./install.sh  
+
   macos:
     name: MacOS Latest
     runs-on: macos-latest
