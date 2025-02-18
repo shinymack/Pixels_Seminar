@@ -63,14 +63,16 @@ jobs:
       - name: Set up WSL2
         uses: vedantmgoyal9/setup-wsl2@main
 
-      - name: Convert Line Endings and Make install.sh Executable
+      - name: Install dos2unix and Convert Line Endings
         run: |
-          wsl sed -i 's/\r//' "/mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Convert line endings to Unix-style
-          wsl chmod +x "/mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Make it executable
+          wsl sudo apt update -y
+          wsl sudo apt install dos2unix -y
+          wsl dos2unix "/mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Convert line endings
 
-      - name: Run Installation Script in WSL
-        run:  wsl bash -c "source /mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh" 
-
+      - name: Make Executable and Run Script
+        run: |
+          wsl chmod +x "/mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"
+          wsl bash "/mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Run the script
 
   macos:
     name: MacOS Latest
