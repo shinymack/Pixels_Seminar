@@ -65,11 +65,11 @@ jobs:
 
       - name: Convert Line Endings and Make install.sh Executable
         run: |
-          wsl sed -i 's/\r//' "/mnt/c/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Convert line endings to Unix-style
-          wsl chmod +x "/mnt/c/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Make it executable
+          wsl sed -i 's/\r//' "/mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Convert line endings to Unix-style
+          wsl chmod +x "/mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Make it executable
 
       - name: Run Installation Script in WSL
-        run: wsl bash "/mnt/c/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Ensure we use the correct file path
+        run: wsl bash "/mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Ensure we use the correct file path
 
 
   macos:
