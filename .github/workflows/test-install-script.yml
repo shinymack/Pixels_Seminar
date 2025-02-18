@@ -61,10 +61,12 @@ jobs:
       - name: Set up WSL2
         uses: vedantmgoyal9/setup-wsl2@main
 
-      - name: Make install.sh Executable
-        run: chmod +x install.sh
-        shell: wsl-run {0}  # Ensure commands run inside WSL
-
+      - name: Make install.sh Executable and Convert Line Endings
+        run: |
+          wsl sed -i 's/\r//' install.sh  # Convert line endings to Unix-style
+          chmod +x install.sh
+        shell: wsl-run {0}
+        
       - name: Run Installation Script in WSL
         run: ./install.sh
         shell: wsl-run {0}  # Ensure commands run inside WSL
