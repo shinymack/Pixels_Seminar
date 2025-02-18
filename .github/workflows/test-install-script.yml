@@ -20,36 +20,36 @@ on:
       - 'install.sh'
 
 jobs:
-  ubuntu-22-04:
-    name: Ubuntu 22.04
+  linux:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-22.04, archlinux, wsl]
+        include:
+          - os: ubuntu-latest
+            image: ubuntu:latest
+          - os: ubuntu-22.04
+            image: ubuntu:22.04
+          - os: archlinux
+            image: archlinux:latest
+          - os: wsl
+            image: mcr.microsoft.com/wsl:latest
+
+    name: ${{ matrix.os }}
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:22.04
+      image: ${{ matrix.image }}
 
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Run Installation Script
-        run: |
-          bash install.sh
-
-  ubuntu-latest:
-    name: Ubuntu Latest
-    runs-on: ubuntu-latest
-    container:
-      image: ubuntu:latest
-
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+      - name: Make install.sh Executable
+        run: chmod +x install.sh
 
       - name: Run Installation Script
-        run: |
-          bash install.sh
-
+        run: ./install.sh
 
   macos:
     name: MacOS Latest
@@ -60,6 +60,8 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Make install.sh Executable
+        run: chmod +x install.sh
+
       - name: Run Installation Script
-        run: |
-          bash install.sh
+        run: ./install.sh
