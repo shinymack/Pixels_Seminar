@@ -68,7 +68,11 @@ jobs:
           wsl chmod +x install.sh          
 
       - name: Run Installation Script in WSL
-        run: pwd && wsl bash ./install.sh  
+        run: |
+          pwd  
+          wsl pwd  
+          wsl ls -al  
+          wsl bash ./install.sh  
 
   macos:
     name: MacOS Latest
