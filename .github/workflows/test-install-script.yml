@@ -69,7 +69,7 @@ jobs:
           wsl chmod +x "/mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Make it executable
 
       - name: Run Installation Script in WSL
-        run: wsl bash "/mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh"  # Ensure we use the correct file path
+        run:  wsl bash -c "source /mnt/d/a/Pixels_Seminar/Pixels_Seminar/install.sh" 
 
 
   macos:
